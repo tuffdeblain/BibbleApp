@@ -8,14 +8,17 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
     let headers: HTTPHeaders = ["api-key": "b4a7bf98adb238d0a3a3b9a826060a4b"]
     var searchResult: Search?
+    var filteredBibles: [Bibble]?
     var tableView: UITableView!
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupSearchController()
         fetchBibles(url: URLS.url.rawValue, header: headers)
     }
 
@@ -23,6 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BibleCell")
         tableView.dataSource = self
+        tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -32,6 +36,15 @@ class ViewController: UIViewController, UITableViewDataSource {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Bibles"
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+    }
+
 
     func fetchBibles(url: String, header: HTTPHeaders) {
         NetworkManager.shared.request(url: url, method: .get, headers: headers) { [weak self] result in
@@ -57,14 +70,33 @@ class ViewController: UIViewController, UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredBibles?.count ?? 0
+        }
         return searchResult?.data?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BibleCell", for: indexPath)
-        if let bibleName = searchResult?.data?[indexPath.row].name {
-            cell.textLabel?.text = bibleName
+        let bible: Bibble
+        if searchController.isActive && searchController.searchBar.text != "" {
+            bible = filteredBibles?[indexPath.row] ?? Bibble()
+        } else {
+            bible = searchResult?.data?[indexPath.row] ?? Bibble()
         }
+        cell.textLabel?.text = bible.name
         return cell
+    }
+
+
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredBibles = searchResult?.data?.filter { (bible: Bibble) -> Bool in
+                return bible.name?.lowercased().contains(searchText.lowercased()) ?? false
+            }
+        } else {
+            filteredBibles = searchResult?.data
+        }
+        tableView.reloadData()
     }
 }
