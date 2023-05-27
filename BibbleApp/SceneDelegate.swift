@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  BibbleApp
 //
-//  Created by Сергей Кудинов on 27.05.2023.
+//  Created by Валентин Казанцев on 27.05.2023.
 //
 
 import UIKit
