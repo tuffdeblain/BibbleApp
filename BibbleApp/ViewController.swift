@@ -9,12 +9,14 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
-    let headers: HTTPHeaders = ["api-key": "b4a7bf98adb238d0a3a3b9a826060a4b"]
+    let headers: HTTPHeaders = ["api-key": "dc78a4be6c4529e824a533fa68f7f77a"]
     var searchResult: Search?
     var filteredBibles: [Bibble]?
     var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
-
+    var index = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -26,7 +28,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BibleCell")
         tableView.dataSource = self
-        tableView.delegate = self
+        tableView.delegate = self  
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -87,6 +89,10 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
         cell.textLabel?.text = bible.name
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.item
+        performSegue(withIdentifier: "bibbleSegue", sender: nil)
+    }
 
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -98,5 +104,13 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
             filteredBibles = searchResult?.data
         }
         tableView.reloadData()
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if segue.identifier == "bibbleSegue" {
+                    let vc = segue.destination as! ViewController2
+                    vc.bible = searchResult?.data?[index]
+                }
     }
 }
