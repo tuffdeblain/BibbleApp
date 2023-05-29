@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class ViewController2: UIViewController {
     var tableView: UITableView!
@@ -71,7 +72,7 @@ class ViewController2: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadSavedBibbles()
         fetchBibleChapters(bibleID: bible?.id ?? "1")
       
         setupUI()
@@ -143,9 +144,8 @@ class ViewController2: UIViewController {
     }
     
     @objc func starButtonTapped() {
-        // Perform the desired action when the star button is tapped
-        // For example, toggle the star button's state or perform some other functionality
-        print("Star button tapped!")
+
+        saveBibbleIfNeeded(bibble: bible!)
     }
     
     func setupTableView() {
@@ -224,7 +224,6 @@ class ViewController2: UIViewController {
                                     self?.tableView.reloadData()
                                 }
                             }
-
                         }
                     } catch {
                         print("Decoding error: \(error)")
@@ -250,4 +249,76 @@ extension ViewController2: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = bookTitles[indexPath.row]
         return cell
     }
+}
+
+extension ViewController2 {
+    private func saveBibbleIfNeeded(bibble: Bibble) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest: NSFetchRequest<BibleEntity> = BibleEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", bibble.id ?? "")
+
+            do {
+                let results = try managedContext.fetch(fetchRequest)
+
+                if let existingBibleEntity = results.first {
+                    existingBibleEntity.id = bibble.id
+                    existingBibleEntity.name = bibble.name
+                    existingBibleEntity.nameLocal = bibble.nameLocal
+                    existingBibleEntity.country = bibble.countries?.first?.name
+                    existingBibleEntity.descriptionLocal = bibble.descriptionLocal
+                    existingBibleEntity.descriptionText = bibble.description
+                    existingBibleEntity.language = bibble.language?.name
+            
+                    try managedContext.save()
+                
+                } else {
+                    let newBibleEntity = BibleEntity(context: managedContext)
+                    newBibleEntity.id = bibble.id
+                    newBibleEntity.name = bibble.name
+                    newBibleEntity.nameLocal = bibble.nameLocal
+                    newBibleEntity.country = bibble.countries?.first?.name
+                    newBibleEntity.descriptionLocal = bibble.descriptionLocal
+                    newBibleEntity.descriptionText = bibble.description
+                    newBibleEntity.language = bibble.language?.name
+                    try managedContext.save()
+                  
+                }
+            } catch {
+                print("Failed to save Bible: \(error)")
+            }
+        }
+
+        private func loadSavedBibbles() {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest: NSFetchRequest<BibleEntity> = BibleEntity.fetchRequest()
+
+            do {
+                let results = try managedContext.fetch(fetchRequest)
+                var bibles: [Bibble] = []
+
+                       for bibleEntity in results {
+                           let bible = Bibble(
+                               id: bibleEntity.id,
+                               language: Language(name: bibleEntity.language, script: nil),
+                               countries: [Country(id: nil, name: bibleEntity.country, nameLocal: nil)],
+                               name: bibleEntity.name,
+                               nameLocal: bibleEntity.nameLocal,
+                               description: bibleEntity.descriptionText,
+                               descriptionLocal: bibleEntity.descriptionLocal
+                           )
+
+                           bibles.append(bible)
+                       }
+            } catch {
+                print("Failed to fetch Bibles: \(error)")
+            }
+        }
 }

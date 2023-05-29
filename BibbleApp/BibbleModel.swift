@@ -17,6 +17,7 @@ struct Bibble: Codable {
     let name, nameLocal, description, descriptionLocal: String?
     let relatedDbl, type, updatedAt: String?
     let audioBibles: [AudioBible]?
+    var bookTitles: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id

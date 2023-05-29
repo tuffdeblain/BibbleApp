@@ -11,7 +11,7 @@
 		C53B26152A21FE13008A02D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26142A21FE13008A02D4 /* SceneDelegate.swift */; };
 		C53B26172A21FE13008A02D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26162A21FE13008A02D4 /* ViewController.swift */; };
 		C53B261A2A21FE13008A02D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C53B26182A21FE13008A02D4 /* Main.storyboard */; };
-		C53B261D2A21FE13008A02D4 /* BibleAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C53B261B2A21FE13008A02D4 /* BibleAppModel.xcdatamodeld */; };
+		C53B261D2A21FE13008A02D4 /* BibleApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C53B261B2A21FE13008A02D4 /* BibleApp.xcdatamodeld */; };
 		C53B261F2A21FE18008A02D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53B261E2A21FE18008A02D4 /* Assets.xcassets */; };
 		C53B26222A21FE18008A02D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C53B26202A21FE18008A02D4 /* LaunchScreen.storyboard */; };
 		C53B262B2A22010E008A02D4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C53B262A2A22010E008A02D4 /* Alamofire */; };
@@ -83,7 +83,7 @@
 				C53B26352A23279A008A02D4 /* ViewController2.swift */,
 				C53B262F2A2201DE008A02D4 /* BibbleModel.swift */,
 				C53B26312A2209C0008A02D4 /* URLS.swift */,
-				C53B261B2A21FE13008A02D4 /* BibleAppModel.xcdatamodeld */,
+				C53B261B2A21FE13008A02D4 /* BibleApp.xcdatamodeld */,
 				C53B26372A2335C8008A02D4 /* BibleChaptersModel.swift */,
 				C53B26392A233D45008A02D4 /* BibleBookModel.swift */,
 			);
@@ -181,7 +181,7 @@
 				C53B26132A21FE13008A02D4 /* AppDelegate.swift in Sources */,
 				C53B262D2A22011A008A02D4 /* NetworkManager.swift in Sources */,
 				C53B26152A21FE13008A02D4 /* SceneDelegate.swift in Sources */,
-				C53B261D2A21FE13008A02D4 /* BibleAppModel.xcdatamodeld in Sources */,
+				C53B261D2A21FE13008A02D4 /* BibleApp.xcdatamodeld in Sources */,
 				C53B263A2A233D45008A02D4 /* BibleBookModel.swift in Sources */,
 				C53B26302A2201DE008A02D4 /* BibbleModel.swift in Sources */,
 				C53B26382A2335C8008A02D4 /* BibleChaptersModel.swift in Sources */,
@@ -421,13 +421,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		C53B261B2A21FE13008A02D4 /* BibleAppModel.xcdatamodeld */ = {
+		C53B261B2A21FE13008A02D4 /* BibleApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C53B261C2A21FE13008A02D4 /* BibbleApp.xcdatamodel */,
 			);
 			currentVersion = C53B261C2A21FE13008A02D4 /* BibbleApp.xcdatamodel */;
-			path = BibleAppModel.xcdatamodeld;
+			path = BibleApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
