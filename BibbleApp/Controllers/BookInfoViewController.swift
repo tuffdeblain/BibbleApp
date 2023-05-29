@@ -9,12 +9,14 @@ import UIKit
 import Alamofire
 import CoreData
 
-class ViewController2: UIViewController {
+class BookInfoViewController: UIViewController {
     var tableView: UITableView!
     var bookTitles: [String] = []
 
     var bible: Bibble?
     var fetchedBooks: Set<String> = []
+    
+    let headers: HTTPHeaders = ["api-key": URLS.apiKey.rawValue]
 
     let starButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -65,7 +67,7 @@ class ViewController2: UIViewController {
     let tableHeaderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Table of Contents"
+        label.text = "Chapters of this Book"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -169,8 +171,8 @@ class ViewController2: UIViewController {
         guard let bibleId = bible else {
             return
         }
-        let url = "https://api.scripture.api.bible/v1/bibles/\(bibleId.id ?? "17c44f6c89de00db-01")/books?include-chapters=true&include-chapters-and-sections=true"
-        let headers: HTTPHeaders = ["api-key": "dc78a4be6c4529e824a533fa68f7f77a"]
+        let url = URLS.biblesUrl.rawValue + (bibleId.id ?? "17c44f6c89de00db-01") + URLS.chaptersPath.rawValue
+
 
         NetworkManager.shared.request(url: url, method: .get, headers: headers) { [weak self] result in
             switch result {
@@ -204,8 +206,7 @@ class ViewController2: UIViewController {
     
     
     func fetchBook(bibleID: String, bookID: String) {
-        let url = "https://api.scripture.api.bible/v1/bibles/\(bibleID)/books/\(bookID)"
-        let headers: HTTPHeaders = ["api-key": "dc78a4be6c4529e824a533fa68f7f77a"]
+        let url = URLS.biblesUrl.rawValue + bibleID + URLS.biblesPath.rawValue + bookID
 
         NetworkManager.shared.request(url: url, method: .get, headers: headers) { [weak self] result in
             switch result {
@@ -236,8 +237,8 @@ class ViewController2: UIViewController {
     }
 
 }
-
-extension ViewController2: UITableViewDelegate, UITableViewDataSource {
+//данные таблицы
+extension BookInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
         return bookTitles.count
@@ -250,8 +251,8 @@ extension ViewController2: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
-extension ViewController2 {
+//кордата
+extension BookInfoViewController {
     private func saveBibbleIfNeeded(bibble: Bibble) {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return

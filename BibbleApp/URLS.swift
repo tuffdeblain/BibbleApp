@@ -8,5 +8,9 @@
 import Foundation
 
 enum URLS: String {
-    case url = "https://api.scripture.api.bible/v1/bibles?include-full-details=true"
+    case mainUrl = "https://api.scripture.api.bible/v1/bibles?include-full-details=true"
+    case apiKey = "ce4a52b38076b9ad1ad748d977d14d6b"
+    case biblesUrl = "https://api.scripture.api.bible/v1/bibles/"
+    case biblesPath = "/books/"
+    case chaptersPath = "/books?include-chapters=true&include-chapters-and-sections=true"
 }

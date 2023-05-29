@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C53B26132A21FE13008A02D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26122A21FE13008A02D4 /* AppDelegate.swift */; };
 		C53B26152A21FE13008A02D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26142A21FE13008A02D4 /* SceneDelegate.swift */; };
-		C53B26172A21FE13008A02D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26162A21FE13008A02D4 /* ViewController.swift */; };
+		C53B26172A21FE13008A02D4 /* ListOfBiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26162A21FE13008A02D4 /* ListOfBiblesViewController.swift */; };
 		C53B261A2A21FE13008A02D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C53B26182A21FE13008A02D4 /* Main.storyboard */; };
 		C53B261D2A21FE13008A02D4 /* BibleApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C53B261B2A21FE13008A02D4 /* BibleApp.xcdatamodeld */; };
 		C53B261F2A21FE18008A02D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53B261E2A21FE18008A02D4 /* Assets.xcassets */; };
@@ -18,16 +18,17 @@
 		C53B262D2A22011A008A02D4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B262C2A22011A008A02D4 /* NetworkManager.swift */; };
 		C53B26302A2201DE008A02D4 /* BibbleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B262F2A2201DE008A02D4 /* BibbleModel.swift */; };
 		C53B26322A2209C0008A02D4 /* URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26312A2209C0008A02D4 /* URLS.swift */; };
-		C53B26362A23279A008A02D4 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26352A23279A008A02D4 /* ViewController2.swift */; };
+		C53B26362A23279A008A02D4 /* BookInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26352A23279A008A02D4 /* BookInfoViewController.swift */; };
 		C53B26382A2335C8008A02D4 /* BibleChaptersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26372A2335C8008A02D4 /* BibleChaptersModel.swift */; };
 		C53B263A2A233D45008A02D4 /* BibleBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B26392A233D45008A02D4 /* BibleBookModel.swift */; };
+		C5B09F862A24D5AB005EEC3C /* FavoriteBiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B09F852A24D5AB005EEC3C /* FavoriteBiblesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C53B260F2A21FE13008A02D4 /* BibbleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibbleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53B26122A21FE13008A02D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C53B26142A21FE13008A02D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C53B26162A21FE13008A02D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C53B26162A21FE13008A02D4 /* ListOfBiblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBiblesViewController.swift; sourceTree = "<group>"; };
 		C53B26192A21FE13008A02D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C53B261C2A21FE13008A02D4 /* BibbleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BibbleApp.xcdatamodel; sourceTree = "<group>"; };
 		C53B261E2A21FE18008A02D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,9 +37,10 @@
 		C53B262C2A22011A008A02D4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C53B262F2A2201DE008A02D4 /* BibbleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibbleModel.swift; sourceTree = "<group>"; };
 		C53B26312A2209C0008A02D4 /* URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLS.swift; sourceTree = "<group>"; };
-		C53B26352A23279A008A02D4 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		C53B26352A23279A008A02D4 /* BookInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoViewController.swift; sourceTree = "<group>"; };
 		C53B26372A2335C8008A02D4 /* BibleChaptersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleChaptersModel.swift; sourceTree = "<group>"; };
 		C53B26392A233D45008A02D4 /* BibleBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleBookModel.swift; sourceTree = "<group>"; };
+		C5B09F852A24D5AB005EEC3C /* FavoriteBiblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBiblesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,20 +74,16 @@
 		C53B26112A21FE13008A02D4 /* BibbleApp */ = {
 			isa = PBXGroup;
 			children = (
-				C53B26122A21FE13008A02D4 /* AppDelegate.swift */,
-				C53B26142A21FE13008A02D4 /* SceneDelegate.swift */,
+				C599A16A2A24E5730054FD03 /* Delegates */,
 				C53B262E2A220136008A02D4 /* Managers */,
-				C53B26162A21FE13008A02D4 /* ViewController.swift */,
+				C599A1692A24E5670054FD03 /* Controllers */,
 				C53B26182A21FE13008A02D4 /* Main.storyboard */,
 				C53B261E2A21FE18008A02D4 /* Assets.xcassets */,
 				C53B26202A21FE18008A02D4 /* LaunchScreen.storyboard */,
 				C53B26232A21FE18008A02D4 /* Info.plist */,
-				C53B26352A23279A008A02D4 /* ViewController2.swift */,
-				C53B262F2A2201DE008A02D4 /* BibbleModel.swift */,
+				C599A1682A24E5580054FD03 /* Models */,
 				C53B26312A2209C0008A02D4 /* URLS.swift */,
 				C53B261B2A21FE13008A02D4 /* BibleApp.xcdatamodeld */,
-				C53B26372A2335C8008A02D4 /* BibleChaptersModel.swift */,
-				C53B26392A233D45008A02D4 /* BibleBookModel.swift */,
 			);
 			path = BibbleApp;
 			sourceTree = "<group>";
@@ -96,6 +94,35 @@
 				C53B262C2A22011A008A02D4 /* NetworkManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		C599A1682A24E5580054FD03 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C53B262F2A2201DE008A02D4 /* BibbleModel.swift */,
+				C53B26372A2335C8008A02D4 /* BibleChaptersModel.swift */,
+				C53B26392A233D45008A02D4 /* BibleBookModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C599A1692A24E5670054FD03 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C53B26162A21FE13008A02D4 /* ListOfBiblesViewController.swift */,
+				C5B09F852A24D5AB005EEC3C /* FavoriteBiblesViewController.swift */,
+				C53B26352A23279A008A02D4 /* BookInfoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C599A16A2A24E5730054FD03 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C53B26122A21FE13008A02D4 /* AppDelegate.swift */,
+				C53B26142A21FE13008A02D4 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +202,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53B26172A21FE13008A02D4 /* ViewController.swift in Sources */,
-				C53B26362A23279A008A02D4 /* ViewController2.swift in Sources */,
+				C5B09F862A24D5AB005EEC3C /* FavoriteBiblesViewController.swift in Sources */,
+				C53B26172A21FE13008A02D4 /* ListOfBiblesViewController.swift in Sources */,
+				C53B26362A23279A008A02D4 /* BookInfoViewController.swift in Sources */,
 				C53B26322A2209C0008A02D4 /* URLS.swift in Sources */,
 				C53B26132A21FE13008A02D4 /* AppDelegate.swift in Sources */,
 				C53B262D2A22011A008A02D4 /* NetworkManager.swift in Sources */,

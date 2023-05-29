@@ -8,8 +8,8 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
-    let headers: HTTPHeaders = ["api-key": "dc78a4be6c4529e824a533fa68f7f77a"]
+class ListOfBiblesViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
+    let headers: HTTPHeaders = ["api-key": URLS.apiKey.rawValue]
     var searchResult: Search?
     var filteredBibles: [Bibble]?
     var tableView: UITableView!
@@ -21,31 +21,12 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
         super.viewDidLoad()
         setupTableView()
         setupSearchController()
-        fetchBibles(url: URLS.url.rawValue, header: headers)
+        fetchBibles(url: URLS.mainUrl.rawValue, header: headers)
+        
+        
     }
 
-    func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BibleCell")
-        tableView.dataSource = self
-        tableView.delegate = self  
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-    }
-    
-    func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Bibles"
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
-    }
+
 
 
     func fetchBibles(url: String, header: HTTPHeaders) {
@@ -94,7 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
         performSegue(withIdentifier: "bibbleSegue", sender: nil)
     }
 
-
+    //поиск по таблице
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             filteredBibles = searchResult?.data?.filter { (bible: Bibble) -> Bool in
@@ -106,11 +87,36 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchResultsUp
         tableView.reloadData()
     }
     
-    
+    //переход с передачей данных
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if segue.identifier == "bibbleSegue" {
-                    let vc = segue.destination as! ViewController2
+                    let vc = segue.destination as! BookInfoViewController
                     vc.bible = searchResult?.data?[index]
                 }
+    }
+}
+//настройка интерфейса
+extension ListOfBiblesViewController {
+    func setupTableView() {
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BibleCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Bibles"
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
     }
 }
